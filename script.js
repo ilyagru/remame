@@ -1,8 +1,40 @@
-initSmoothScrolling();
+
+window.onload = function() {
+    initSmoothScrolling();
+
+    var subscribeForm = document.forms.subscribeForm;
+    var thankYou = document.querySelector('#thank-you p');
+    subscribeForm.onsubmit = function(e){
+        e.preventDefault();
+        var email = subscribeForm.email.value;
+        var url = 'https://api.mlab.com/api/1/databases/remame/collections/emails?apiKey=RqXWJCYd7LCFOyvtO_GB2H23xdSdv_nM';
+        var json = JSON.stringify({
+            email: email
+        });
+
+        /* ...Form Validation Code Goes Here... */
+
+        var http = new XMLHttpRequest();
+        http.open('POST', url, true);
+        http.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+        http.onload = function() {
+            if (http.status == 200) {
+                // thankYou.style.display = 'block';
+                thankYou.innerHTML = 'Thank you a lot! 🎉 Remame will be with you soon.'
+                subscribeForm.reset();
+            } else {
+                thankYou.innerHTML = 'Oops.. Something goes wrong. 😯 Let\'s try one more time!';
+            }
+        };
+        http.send(json);
+    };
+
+};
 
 function initSmoothScrolling() {
   var duration = 1000;
-  
+
   var pageUrl = location.hash ?
     stripHash(location.href) :
     location.href;

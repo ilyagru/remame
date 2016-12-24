@@ -113,6 +113,10 @@ form .button {
     cursor: pointer;
 }
 
+/*#thank-you {
+    display: none;
+}*/
+
 footer {
     outline: none;
 }
