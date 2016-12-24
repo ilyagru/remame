@@ -5,8 +5,8 @@ body {
     color: #7E49C3;
 }
 
-h1, h2 {
-    letter-spacing: .03em;
+h2 {
+    letter-spacing: -.08rem;
 }
 
 .container {
@@ -112,10 +112,6 @@ form .button {
     margin: 0 auto;
     cursor: pointer;
 }
-
-/*#thank-you {
-    display: none;
-}*/
 
 footer {
     outline: none;
