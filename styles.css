@@ -19,8 +19,8 @@ h2 {
 .gradient-back {
     color: #fff;
     background: #3023ae;
-    background: -moz-linear-gradient(-45deg, #3023ae 0%, #c86dd7 100%);
     background: -webkit-linear-gradient(-45deg, #3023ae 0%,#c86dd7 100%);
+    background: -webkit-linear-gradient(315deg, #3023ae 0%,#c86dd7 100%);
     background: linear-gradient(135deg, #3023ae 0%,#c86dd7 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3023ae', endColorstr='#c86dd7',GradientType=1);
 }
@@ -128,7 +128,10 @@ footer small a {
 
 @media (max-width: 640px) {
     .row-reverse {
-        flex-direction: column-reverse;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+            -ms-flex-direction: column-reverse;
+                flex-direction: column-reverse;
     }
 
     section:nth-child(-n+3) {
