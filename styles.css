@@ -23,6 +23,11 @@ h2 {
     background: -webkit-linear-gradient(315deg, #3023ae 0%,#c86dd7 100%);
     background: linear-gradient(135deg, #3023ae 0%,#c86dd7 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3023ae', endColorstr='#c86dd7',GradientType=1);
+    padding: 100px 0;
+}
+
+footer.gradient-back {
+    padding: 140px 0;
 }
 
 img {
@@ -113,6 +118,10 @@ form .button {
     cursor: pointer;
 }
 
+#subscribe-form {
+    margin-bottom: 150px;
+}
+
 footer {
     outline: none;
 }
@@ -136,6 +145,15 @@ footer small a {
 
     section:nth-child(-n+3) {
         padding-bottom: 0;
+    }
+
+    .gradient-back,
+    footer.gradient-back {
+        padding: 50px 0;
+    }
+
+    #subscribe-form {
+        margin-bottom: 0
     }
 
     a.button {
