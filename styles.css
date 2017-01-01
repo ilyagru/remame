@@ -27,7 +27,7 @@ h2 {
 }
 
 footer.gradient-back {
-    padding: 140px 0;
+    padding: 170px 0;
 }
 
 img {
@@ -119,7 +119,22 @@ form .button {
 }
 
 #subscribe-form {
-    margin-bottom: 150px;
+    margin-bottom: 80px;
+}
+
+#thank-you p {
+    font-size: 24px;
+    visibility: hidden;
+    transition: all 0.5s;
+    opacity: .5;
+    transform: scale(0.5);
+    margin: 40px 0;
+}
+
+#thank-you p.active {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
 }
 
 footer {

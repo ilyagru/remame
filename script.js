@@ -19,12 +19,13 @@ window.onload = function() {
         http.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
         http.onload = function() {
-            if (http.status == 200) {
-                // thankYou.style.display = 'block';
-                thankYou.innerHTML = 'Thank you a lot! 🎉 Remame will be with you soon.'
+            if (http.status === 200 && http.statusText === 'OK') {
+                thankYou.innerHTML = 'Thank you a lot! 🎉 Remame will be with you soon.';
+                thankYou.classList.add('active');
                 subscribeForm.reset();
             } else {
                 thankYou.innerHTML = 'Oops.. Something goes wrong. 😯 Let\'s try one more time!';
+                thankYou.classList.add('active');
             }
         };
         http.send(json);
