@@ -34,6 +34,21 @@ img {
     max-width: 50%;
 }
 
+header .iphone-container {
+    position: relative;
+}
+
+header iframe {
+    position: absolute;
+    top: -6px;
+    left: 2px;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 38%;
+    height: 71%;
+}
+
 .column-center {
     text-align: center;
 }
@@ -156,6 +171,11 @@ footer small a {
         -webkit-box-direction: reverse;
             -ms-flex-direction: column-reverse;
                 flex-direction: column-reverse;
+    }
+
+    header iframe {
+        left: 1px;
+        width: 40%;
     }
 
     section:nth-child(-n+3) {
