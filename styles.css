@@ -34,6 +34,18 @@ img {
     max-width: 50%;
 }
 
+header .langs a {
+    color: #fff;
+}
+
+header .langs a.active {
+    text-decoration: underline;
+}
+
+header .langs a:hover {
+    text-decoration: underline;
+}
+
 header .iphone-container {
     position: relative;
 }
@@ -53,6 +65,10 @@ header iframe {
     text-align: center;
 }
 
+.column-right {
+    text-align: right;
+}
+
 header,
 section,
 footer {
@@ -70,7 +86,7 @@ header {
     background-color: #ffd3bb;
     color: #7E49C3;
     height: 46px;
-    max-width: 220px;
+    max-width: 260px;
     line-height: 44px;
     padding: 0 20px;
     border-radius: 999em;
@@ -171,6 +187,11 @@ footer small a {
         -webkit-box-direction: reverse;
             -ms-flex-direction: column-reverse;
                 flex-direction: column-reverse;
+    }
+
+    header .column-right {
+        text-align: center;
+        margin-bottom: 20px;
     }
 
     header iframe {
