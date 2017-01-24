@@ -26,6 +26,7 @@ window.onload = function() {
             if (http.status === 200 && http.statusText === 'OK') {
                 thankYou.innerHTML = _('subscribe-success');
                 thankYou.classList.add('active');
+                ga('send', 'event', 'subscribe', 'getButton');
                 subscribeForm.reset();
             } else {
                 thankYou.innerHTML = _('subscribe-failure');
