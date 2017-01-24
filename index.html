@@ -124,9 +124,9 @@
                 <div class="column column-center subscribe-block">
                     <h3 id="h3">Get In</h3>
                     <p id="p6">The app will be on the App Store soon. Leave your email to get notified.</p>
-                    <form id="subscribe-form" name="subscribeForm" onsubmit="ga('send', 'event', 'subscribe', 'getButton');">
+                    <form id="subscribe-form" name="subscribeForm">
                         <input id="email" type="email" name="email" placeholder="Type your email.." required="required">
-                        <button type="submit" class="button" id="btn2">Get notified</button>
+                        <button type="submit" class="button" id="btn2" onclick="ga('send', 'event', 'subscribe', 'getButton');">Get notified</button>
                     </form>
                     <div id="thank-you">
                         <p></p>
