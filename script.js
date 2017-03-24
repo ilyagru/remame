@@ -8,6 +8,7 @@ window.onload = function() {
     // Subscription
     var subscribeForm = document.forms.subscribeForm;
     var thankYou = document.querySelector('#thank-you p');
+
     subscribeForm.onsubmit = function(e){
         e.preventDefault();
         var email = subscribeForm.email.value;
@@ -18,21 +19,26 @@ window.onload = function() {
 
         /* ...Form Validation Code Goes Here... */
 
-        var http = new XMLHttpRequest();
-        http.open('POST', url, true);
-        http.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        if (email !== '') {
+            var http = new XMLHttpRequest();
+            http.open('POST', url, true);
+            http.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
-        http.onload = function() {
-            if (http.status === 200 && http.statusText === 'OK') {
-                thankYou.innerHTML = _('subscribe-success');
-                thankYou.classList.add('active');
-                subscribeForm.reset();
-            } else {
-                thankYou.innerHTML = _('subscribe-failure');
-                thankYou.classList.add('active');
-            }
-        };
-        http.send(json);
+            http.onload = function() {
+                if (http.status === 200 && http.statusText === 'OK') {
+                    thankYou.innerHTML = _('subscribe-success');
+                    thankYou.classList.add('active');
+                    subscribeForm.reset();
+                } else {
+                    thankYou.innerHTML = _('subscribe-failure');
+                    thankYou.classList.add('active');
+                }
+            };
+            http.send(json);
+        } else {
+            thankYou.innerHTML = _('subscribe-failure');
+            thankYou.classList.add('active');
+        }
     };
 
 };
