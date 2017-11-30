@@ -45,144 +45,123 @@ window.onload = function() {
 
 // Scrolling
 function initSmoothScrolling() {
-  var duration = 1000;
+    var duration = 1000;
 
-  var pageUrl = location.hash ?
-    stripHash(location.href) :
-    location.href;
+    var pageUrl = location.hash ?
+        stripHash(location.href) :
+        location.href;
 
-  delegatedLinkHijacking();
-  //directLinkHijacking();
+    delegatedLinkHijacking();
 
-  function delegatedLinkHijacking() {
-    document.body.addEventListener('click', onClick, false);
+    function delegatedLinkHijacking() {
+        document.body.addEventListener('click', onClick, false);
 
-    function onClick(e) {
-      if (!isInPageLink(e.target))
-        return;
+        function onClick(e) {
+            if (!isInPageLink(e.target)) {
+                return;
+            }
 
-      e.stopPropagation();
-      e.preventDefault();
+            e.stopPropagation();
+            e.preventDefault();
 
-      jump(e.target.hash, {
-        duration: duration,
-        callback: function() {
-          setFocus(e.target.hash);
+            jump(e.target.hash, {
+                duration: duration,
+                callback: function() {
+                    setFocus(e.target.hash);
+                }
+            });
         }
-      });
     }
-  }
 
-  // function directLinkHijacking() {
-  //   [].slice.call(document.querySelectorAll('a'))
-  //     .filter(isInPageLink)
-  //     .forEach(function(a) {
-  //       a.addEventListener('click', onClick, false);
-  //     });
-  //
-  //   function onClick(e) {
-  //     e.stopPropagation();
-  //     e.preventDefault();
-  //
-  //     jump(e.target.hash, {
-  //       duration: duration,
-  //     });
-  //   }
-  //
-  // }
-
-  function isInPageLink(n) {
-    return n.tagName.toLowerCase() === 'a' &&
-      n.hash.length > 0 &&
-      stripHash(n.href) === pageUrl;
-  }
-
-  function stripHash(url) {
-    return url.slice(0, url.lastIndexOf('#'));
-  }
-
-  // function isCssSmoothSCrollSupported() {
-  //   return 'scrollBehavior' in document.documentElement.style;
-  // }
-
-  function setFocus(hash) {
-    var element = document.getElementById(hash.substring(1));
-
-    if (element) {
-      if (!/^(?:a|select|input|button|textarea)$/i.test(element.tagName)) {
-        element.tabIndex = -1;
-      }
-
-      element.focus();
+    function isInPageLink(n) {
+        return n.tagName.toLowerCase() === 'a' &&
+            n.hash.length > 0 &&
+            stripHash(n.href) === pageUrl;
     }
-  }
 
+    function stripHash(url) {
+        return url.slice(0, url.lastIndexOf('#'));
+    }
+
+    function setFocus(hash) {
+        var element = document.getElementById(hash.substring(1));
+
+        if (element) {
+            if (!/^(?:a|select|input|button|textarea)$/i.test(element.tagName)) {
+                element.tabIndex = -1;
+            }
+
+            element.focus();
+        }
+    }
 }
 
 function jump(target, options) {
-  var
-    start = window.pageYOffset,
-    opt = {
-      duration: options.duration,
-      offset: options.offset || 0,
-      callback: options.callback,
-      easing: options.easing || easeInOutQuad
-    },
-    distance = typeof target === 'string' ?
-    opt.offset + document.querySelector(target).getBoundingClientRect().top :
-    target,
-    duration = typeof opt.duration === 'function' ?
-    opt.duration(distance) :
-    opt.duration,
-    timeStart, timeElapsed;
+    var
+        start = window.pageYOffset,
+        opt = {
+            duration: options.duration,
+            offset: options.offset || 0,
+            callback: options.callback,
+            easing: options.easing || easeInOutQuad
+        },
+        distance = typeof target === 'string' ?
+            opt.offset + document.querySelector(target).getBoundingClientRect().top :
+            target,
+        duration = typeof opt.duration === 'function' ?
+            opt.duration(distance) :
+            opt.duration,
+        timeStart, timeElapsed;
 
-  requestAnimationFrame(function(time) {
-    timeStart = time;
-    loop(time);
-  });
+    requestAnimationFrame(function(time) {
+        timeStart = time;
+        loop(time);
+    });
 
-  function loop(time) {
-    timeElapsed = time - timeStart;
+    function loop(time) {
+        timeElapsed = time - timeStart;
 
-    window.scrollTo(0, opt.easing(timeElapsed, start, distance, duration));
+        window.scrollTo(0, opt.easing(timeElapsed, start, distance, duration));
 
-    if (timeElapsed < duration)
-      requestAnimationFrame(loop);
-    else
-      end();
-  }
+        if (timeElapsed < duration) {
+            requestAnimationFrame(loop);
+        } else {
+            end();
+        }
+    }
 
-  function end() {
-    window.scrollTo(0, start + distance);
+    function end() {
+        window.scrollTo(0, start + distance);
 
-    if (typeof opt.callback === 'function')
-      opt.callback();
-  }
+        if (typeof opt.callback === 'function') {
+            opt.callback();
+        }
+    }
 
-  function easeInOutQuad(t, b, c, d) {
-    t /= d / 2;
-    if (t < 1) return c / 2 * t * t + b;
-    t--;
-    return -c / 2 * (t * (t - 2) - 1) + b;
-  }
+    function easeInOutQuad(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
 }
 
 // Translation
 function _(str, locale) {
-	locale = locale || _.defaultLocale;
-	if (_.data.hasOwnProperty(locale) && typeof _.data[locale] == 'object') {
-		if (_.data[locale].hasOwnProperty(str)) {
-			return _.data[locale][str];
-		}
-	}
-	return str;
+    locale = locale || _.defaultLocale;
+    if (_.data.hasOwnProperty(locale) && typeof _.data[locale] == 'object') {
+        if (_.data[locale].hasOwnProperty(str)) {
+            return _.data[locale][str];
+        }
+    }
+    return str;
 }
 
 _.defaultLocale = 'en';
 _.data = {
     en: {
         'title': 'Remame - App for remembering names',
-    	'h1': 'Forget people\'s names? – There is a solution!',
+        'h1': 'Forget people\'s names? – There is a solution!',
         'p1': 'Remame is an app that will help you remember names of different people you just met. Taking a note about a person and remembering names has never been so easy.',
         'btn1': 'Subscribe',
         'btn3': 'Download',
@@ -208,18 +187,18 @@ _.data = {
 };
 
 _.registerLocale = function registerLocale(locale, data) {
-	if (!_.data.hasOwnProperty(locale)) {
-		_.data[locale] = {};
-	}
-	for (var str in data) {
-		if (data.hasOwnProperty(str)) {
-			_.data[locale][str] = data[str];
-		}
-	}
+    if (!_.data.hasOwnProperty(locale)) {
+        _.data[locale] = {};
+    }
+    for (var str in data) {
+        if (data.hasOwnProperty(str)) {
+            _.data[locale][str] = data[str];
+        }
+    }
 };
 
 _.registerLocale('ru', {
-	'title': 'Remame – Приложение для запоминания имен',
+    'title': 'Remame – Приложение для запоминания имен',
     'h1': 'Забываете имена людей? – Есть решение!',
     'p1': 'Remame – это приложение, которое поможет вам запоминать имена разных людей, с которыми вы только что познакомились. Добавление заметки о человеке и запоминание имен никогда не было таким простым.',
     'btn1': 'Подписаться',
@@ -245,7 +224,7 @@ _.registerLocale('ru', {
 });
 
 _.registerLocale('es', {
-	'title': 'Remame – Aplicación para recordar los nombres',
+    'title': 'Remame – Aplicación para recordar los nombres',
     'h1': '¿Olvidar los nombres de las personas? - ¡Hay una solución!',
     'p1': 'Remame – una aplicación que te ayudará a recordar los nombres de las diferentes personas que acabas de conocer. Tomar una nota sobre una persona y recordar nombres nunca ha sido tan fácil.',
     'btn1': 'Suscribir',
