@@ -10,6 +10,6 @@ Hopefully you will enjoy our service and there will be fewer situations when you
 
 ---
 
-Copyright &copy; 2017 Remame
+Copyright &copy; 2018 Remame
 
 
