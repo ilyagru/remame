@@ -5,6 +5,19 @@ body {
     color: #7E49C3;
 }
 
+a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.active {
+    text-decoration: none;
+}
+
 h2 {
     letter-spacing: -.08rem;
 }
@@ -32,18 +45,6 @@ footer.gradient-back {
 
 img {
     max-width: 50%;
-}
-
-header .langs a {
-    color: #fff;
-}
-
-header .langs a.active {
-    text-decoration: underline;
-}
-
-header .langs a:hover {
-    text-decoration: underline;
 }
 
 header .button {
@@ -163,28 +164,12 @@ header .logo img {
     font-size: 1.2em;
 }
 
-form .button {
-    margin: 0 auto;
-    cursor: pointer;
+main a {
+    color: #000;
 }
 
-#subscribe-form {
-    margin-bottom: 80px;
-}
-
-#thank-you p {
-    font-size: 24px;
-    visibility: hidden;
-    transition: all 0.5s;
-    opacity: .5;
-    transform: scale(0.5);
-    margin: 40px 0;
-}
-
-#thank-you p.active {
-    visibility: visible;
-    opacity: 1;
-    transform: scale(1);
+main ul {
+    list-style: inherit;
 }
 
 footer {
@@ -198,6 +183,10 @@ footer .row:last-child {
 footer small a {
     color: #fff;
     text-decoration: underline;
+}
+
+body.privacy-policy h1 {
+    margin-top: 65px;
 }
 
 @media (max-width: 640px) {
